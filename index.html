@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Real-time currency converter with live exchange rates. Convert between multiple currencies instantly with an intuitive, beautiful interface.">
+    <title>Currency Converter - Real-Time Exchange Rates</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="background-gradient"></div>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <h1 class="logo-text">CurrencyX</h1>
+            </div>
+            <p class="subtitle">Real-time currency conversion at your fingertips</p>
+        </header>
+
+        <main class="converter-card">
+            <div class="card-glow"></div>
+
+            <div class="converter-section">
+                <div class="input-group">
+                    <label for="amount-input" class="input-label">Amount</label>
+                    <div class="amount-input-wrapper">
+                        <input type="number" id="amount-input" class="amount-input" placeholder="1000.00" value="1"
+                            min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="currency-row">
+                    <div class="currency-group">
+                        <label for="from-currency" class="input-label">From</label>
+                        <div class="select-wrapper">
+                            <select id="from-currency" class="currency-select">
+                                <option value="USD" selected>USD - US Dollar</option>
+                            </select>
+                            <svg class="select-arrow" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="currency-flag" id="from-flag"></div>
+                    </div>
+
+                    <button class="swap-button" id="swap-btn" aria-label="Swap currencies">
+                        <svg class="swap-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 16V4M7 4L3 8M7 4L11 8" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M17 8V20M17 20L21 16M17 20L13 16" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <div class="currency-group">
+                        <label for="to-currency" class="input-label">To</label>
+                        <div class="select-wrapper">
+                            <select id="to-currency" class="currency-select">
+                                <option value="EUR">EUR - Euro</option>
+                            </select>
+                            <svg class="select-arrow" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="currency-flag" id="to-flag"></div>
+                    </div>
+                </div>
+
+                <button class="convert-button" id="convert-btn">
+                    <span class="button-text">Convert Currency</span>
+                    <svg class="button-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="result-section" id="result-section">
+                <div class="result-shimmer"></div>
+                <div class="result-content">
+                    <div class="result-amount" id="result-amount">0.00</div>
+                    <div class="result-currency" id="result-currency">EUR</div>
+                </div>
+                <div class="exchange-rate-info" id="exchange-rate-info">
+                    <svg class="info-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                        <path d="M12 16V12M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                    <span id="rate-text">1 USD = 0.85 EUR</span>
+                </div>
+            </div>
+
+            <div class="loading-overlay" id="loading-overlay">
+                <div class="loading-spinner"></div>
+                <p class="loading-text">Fetching latest rates...</p>
+            </div>
+        </main>
+
+        <div class="popular-conversions">
+            <h2 class="section-title">Popular Conversions</h2>
+            <div class="conversion-grid" id="popular-grid">
+                <!-- Popular conversions will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p class="footer-text">
+                <svg class="footer-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                    <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                Exchange rates updated in real-time via ExchangeRate-API
+            </p>
+        </footer>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
