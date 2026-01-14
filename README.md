@@ -107,27 +107,6 @@ const data = await response.json();
 - **Tablet**: 481px - 768px - Optimized grid layout
 - **Mobile**: ≤ 480px - Stacked vertical layout
 
-## 🔧 Customization
-
-### Adding New Currencies
-Edit the `currencies` object in `app.js`:
-```javascript
-const currencies = {
-    'CODE': { name: 'Currency Name', symbol: '$', flag: '🏳️' },
-    // Add more currencies...
-};
-```
-
-### Changing Color Scheme
-Modify CSS custom properties in `index.css`:
-```css
-:root {
-    --color-accent-primary: #6366f1;
-    --color-accent-secondary: #8b5cf6;
-    /* Customize colors... */
-}
-```
-
 ## 🌐 Browser Support
 
 - ✅ Chrome (latest)
