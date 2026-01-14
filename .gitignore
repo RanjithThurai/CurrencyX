@@ -2,7 +2,7 @@
 .env
 
 # Configuration file with API keys
-config.js
+# config.js  # Uncommented for Vercel deployment
 
 # Node modules (if using npm in future)
 node_modules/
